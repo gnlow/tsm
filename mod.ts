@@ -10,6 +10,11 @@ const handler =
                 result.get(target.href) || "",
                 {
                     status: 200,
+                    headers: {
+                        "content-type": "application/javascript",
+                        "access-control-allow-origin": "*",
+                        "x-typescript-types": target.href,
+                    },
                 }
             )    
         } catch(e) {
