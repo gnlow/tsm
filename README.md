@@ -1,4 +1,6 @@
 # tsm
+**tsm is experimental project, and is not ready for production**
+
 Use TypeScript everywhere
 - Transfiles TS to JS via [deno_emit](https://github.com/denoland/deno_emit)
 - Provides type information via `x-typescript-types` header
