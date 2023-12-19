@@ -15,6 +15,18 @@ const handler =
                     cacheRoot: Deno.cwd(),
                 }
             )
+
+            const originHeaders = await fetch(target).then(x => x.headers)
+
+            const cacheHeaders = Object.fromEntries(
+                [
+                    "cache-control",
+                    "age",
+                    "expires",
+                    "etag",
+                ].map(header => [header, originHeaders.get(header)!])
+            )
+
             return new Response(
                 result.get(target.href) || "",
                 {
@@ -23,6 +35,7 @@ const handler =
                         "content-type": "application/javascript",
                         "access-control-allow-origin": "*",
                         "x-typescript-types": target.href,
+                        ...cacheHeaders,
                     },
                 }
             )    
